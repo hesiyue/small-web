@@ -31,4 +31,7 @@ public class GoodEntity {
 
     @Column(name = "type")
     private String type;
+
+    @Column(name = "kind")
+    private String kind;
 }

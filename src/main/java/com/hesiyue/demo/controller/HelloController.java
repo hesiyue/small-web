@@ -2,8 +2,12 @@ package com.hesiyue.demo.controller;
 
 import com.hesiyue.demo.Result;
 import com.hesiyue.demo.entity.GoodEntity;
+import com.hesiyue.demo.entity.GoodsDetailEntity;
+import com.hesiyue.demo.entity.ImgEntity;
 import com.hesiyue.demo.entity.UserEntity;
 import com.hesiyue.demo.repository.GoodRepository;
+import com.hesiyue.demo.repository.GoodsDetailRepository;
+import com.hesiyue.demo.repository.ImgRepository;
 import com.hesiyue.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +25,12 @@ public class HelloController {
 
     @Autowired
     GoodRepository goodRepository;
+
+    @Autowired
+    ImgRepository imgRepository;
+
+    @Autowired
+    GoodsDetailRepository goodsDetailRepository;
 
     @GetMapping("/hello")
     public String getindex(){
@@ -43,7 +53,22 @@ public class HelloController {
 
     }
 
-g
+    @PostMapping("/queryGoodsImgs")
+    public List<ImgEntity> queryGoodsImgs(@RequestParam("imgid") String imgid){
+        return imgRepository.findByImgid(imgid);
+    }
+
+    @PostMapping("/queryGoodsDetail")
+    public GoodsDetailEntity queryGoodsDetail(@RequestParam("id") String id){
+        return goodsDetailRepository.findById(id);
+    }
+
+    @PostMapping("/queryByKind")
+    public List<GoodEntity> findByKind(@RequestParam("kind") String kind){
+        return goodRepository.findByKind(kind);
+    }
+
+
 
     //PostMapping与requestbody搭配，通过json传递     GetMapping与requestParam搭配，通过路径或者参数指定?username=  的方式
     //@PathVariable支持restful风格

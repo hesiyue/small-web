@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface GoodRepository extends JpaRepository<GoodEntity,Integer> {
     public List<GoodEntity> findByType(String type);
+    public List<GoodEntity> findByKind(String kind);
 
 }
